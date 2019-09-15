@@ -8,6 +8,12 @@
 
     <services>
         <defaults autowire="true" autoconfigure="true" public="false"/>
+
+        <service id="Zholus\SymfonyMiddleware\EventSubscriber\RequestSubscriber">
+            <tag name="kernel.event_subscriber" />
+        </service>
+
+        <prototype namespace="Zholus\SymfonyMiddleware\" resource="../../*" exclude="../../{vendor}" />
     </services>
 
 </container>
