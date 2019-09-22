@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Zholus\SymfonyMiddleware\ServiceLocator;
 
 use Symfony\Bundle\FrameworkBundle\Routing\Router;
+use Zholus\SymfonyMiddleware\GlobalMiddlewareInterface;
 use Zholus\SymfonyMiddleware\MiddlewareInterface;
 use Zholus\SymfonyMiddleware\Route\RouteMiddlewareResolver;
 
@@ -21,13 +22,16 @@ final class MiddlewareServiceLocator
         $this->routeMiddlewareResolver = $routeMiddlewareResolver;
     }
 
-    public function addGlobalMiddleware(MiddlewareInterface $middleware): void
+    public function addGlobalMiddleware(GlobalMiddlewareInterface $middleware, int $priority = 0): void
     {
-        $this->globalMiddleware[get_class($middleware)] = $middleware;
+        $this->globalMiddleware[] = [
+            'middleware' => $middleware,
+            'priority' => $priority
+        ];
     }
 
     /**
-     * @return MiddlewareInterface[]
+     * @return GlobalMiddlewareInterface[]
      */
     public function getGlobalMiddlewares(): array
     {

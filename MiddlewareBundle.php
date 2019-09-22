@@ -17,8 +17,7 @@ class MiddlewareBundle extends Bundle
             ->addTag(MiddlewareEnum::ALIAS_SUFFIX);
 
         $container->registerForAutoconfiguration(GlobalMiddlewareInterface::class)
-            ->addTag(MiddlewareEnum::GLOBAL_TAG)
-            ->setPublic(true);
+            ->addTag(MiddlewareEnum::GLOBAL_TAG);
 
         $container->addCompilerPass(new GlobalMiddlewarePass());
         $container->addCompilerPass(new ControllerMiddlewarePass());

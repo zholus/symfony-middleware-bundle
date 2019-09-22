@@ -16,7 +16,31 @@ final class GlobalMiddlewarePass implements CompilerPassInterface
         $def = $container->getDefinition(MiddlewareServiceLocator::class);
 
         foreach ($container->findTaggedServiceIds(MiddlewareEnum::GLOBAL_TAG) as $id => $attributes) {
-            $def->addMethodCall('addGlobalMiddleware', [new Reference($id)]);
+            $attributes = $this->clearEmpty($attributes);
+
+            $priority = 0;
+
+            foreach ($attributes as $attribute) {
+                if (array_key_exists('priority', $attribute)) {
+                    $priority = $attribute['priority'];
+                    break;
+                }
+            }
+
+            $def->addMethodCall('addGlobalMiddleware', [new Reference($id), $priority]);
         }
+    }
+
+    private function clearEmpty($attributes): array
+    {
+        $result = [];
+
+        foreach ($attributes as $attribute) {
+            if (!empty($attribute)) {
+                $result[] = $attribute;
+            }
+        }
+
+        return $result;
     }
 }
