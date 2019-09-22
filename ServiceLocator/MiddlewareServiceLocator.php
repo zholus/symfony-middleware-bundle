@@ -8,7 +8,7 @@ use Zholus\SymfonyMiddleware\GlobalMiddlewareInterface;
 use Zholus\SymfonyMiddleware\MiddlewareInterface;
 use Zholus\SymfonyMiddleware\Route\RouteMiddlewareResolver;
 
-final class MiddlewareServiceLocator
+class MiddlewareServiceLocator
 {
     private $globalMiddleware = [];
     private $controllerMiddleware = [];

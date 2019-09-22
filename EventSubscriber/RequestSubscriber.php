@@ -87,7 +87,7 @@ final class RequestSubscriber implements EventSubscriberInterface
         $result = $globalMiddlewares;
 
         usort($result, static function (array $a, array $b) {
-            return $a['priority'] <=> $b['priority'];
+            return $b['priority'] <=> $a['priority'];
         });
 
         return $result;

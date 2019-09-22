@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Zholus\SymfonyMiddleware;
 
-final class MiddlewareEnum
+abstract class MiddlewareEnum
 {
     public const ALIAS_SUFFIX = 'middleware.alias';
     public const GLOBAL_TAG = 'middleware.global';

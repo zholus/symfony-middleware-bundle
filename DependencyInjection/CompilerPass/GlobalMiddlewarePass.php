@@ -31,16 +31,10 @@ final class GlobalMiddlewarePass implements CompilerPassInterface
         }
     }
 
-    private function clearEmpty($attributes): array
+    private function clearEmpty(array $attributes): array
     {
-        $result = [];
-
-        foreach ($attributes as $attribute) {
-            if (!empty($attribute)) {
-                $result[] = $attribute;
-            }
-        }
-
-        return $result;
+        return array_filter($attributes, function ($e) {
+            return !empty($e);
+        });
     }
 }
