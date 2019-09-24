@@ -1,9 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace Zholus\SymfonyMiddleware;
+namespace Zholus\SymfonyMiddleware\Middleware;
 
-final class MiddlewareMerger implements MiddlewareMergerInterface
+use Zholus\SymfonyMiddleware\MiddlewareInterface;
+
+class MiddlewareMerger
 {
     /**
      * {@inheritDoc}

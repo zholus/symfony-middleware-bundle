@@ -8,6 +8,7 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
 use Zholus\SymfonyMiddleware\DependencyInjection\CompilerPass\ControllerMiddlewarePass;
 use Zholus\SymfonyMiddleware\DependencyInjection\CompilerPass\GlobalMiddlewarePass;
 use Zholus\SymfonyMiddleware\DependencyInjection\CompilerPass\RouteMiddlewarePass;
+use Zholus\SymfonyMiddleware\Middleware\MiddlewareEnum;
 
 class MiddlewareBundle extends Bundle
 {

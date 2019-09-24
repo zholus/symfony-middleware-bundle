@@ -1,9 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace Zholus\SymfonyMiddleware;
+namespace Zholus\SymfonyMiddleware\Middleware;
 
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Zholus\SymfonyMiddleware\MiddlewareInterface;
 
 class MiddlewareServiceFetcher
 {

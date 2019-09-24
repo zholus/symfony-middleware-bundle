@@ -6,7 +6,7 @@ namespace Zholus\SymfonyMiddleware\DependencyInjection\CompilerPass;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Reference;
-use Zholus\SymfonyMiddleware\MiddlewareEnum;
+use Zholus\SymfonyMiddleware\Middleware\MiddlewareEnum;
 use Zholus\SymfonyMiddleware\ServiceLocator\MiddlewareServiceLocator;
 
 final class RouteMiddlewarePass implements CompilerPassInterface

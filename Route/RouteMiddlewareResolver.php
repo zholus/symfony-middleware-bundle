@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Zholus\SymfonyMiddleware\Route;
 
 use Symfony\Bundle\FrameworkBundle\Routing\Router;
-use Zholus\SymfonyMiddleware\MiddlewareServiceFetcher;
+use Zholus\SymfonyMiddleware\Middleware\MiddlewareServiceFetcher;
 
 final class RouteMiddlewareResolver
 {

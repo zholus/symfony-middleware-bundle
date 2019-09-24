@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Zholus\SymfonyMiddleware;
+namespace Zholus\SymfonyMiddleware\Middleware;
 
 abstract class MiddlewareEnum
 {

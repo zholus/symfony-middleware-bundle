@@ -6,20 +6,20 @@ namespace Zholus\SymfonyMiddleware\EventSubscriber;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\Event\ControllerEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
-use Zholus\SymfonyMiddleware\MiddlewareMergerInterface;
-use Zholus\SymfonyMiddleware\ServiceLocator\MiddlewareServiceLocator;
+use Zholus\SymfonyMiddleware\Controller\ControllerParserInterface;
+use Zholus\SymfonyMiddleware\Middleware\MiddlewareFacade;
 
 final class RequestSubscriber implements EventSubscriberInterface
 {
-    private $middlewareServiceLocator;
-    private $middlewareMerger;
+    private $controllerParser;
+    private $middlewareFacade;
 
     public function __construct(
-        MiddlewareServiceLocator $middlewareServiceLocator,
-        MiddlewareMergerInterface $middlewareMerger
+        ControllerParserInterface $controllerParser,
+        MiddlewareFacade $middlewareFacade
     ) {
-        $this->middlewareServiceLocator = $middlewareServiceLocator;
-        $this->middlewareMerger = $middlewareMerger;
+        $this->controllerParser = $controllerParser;
+        $this->middlewareFacade = $middlewareFacade;
     }
 
     public static function getSubscribedEvents(): array
@@ -41,34 +41,9 @@ final class RequestSubscriber implements EventSubscriberInterface
 
         $controller = $event->getController();
 
-        if (is_array($controller)) {
-            $controller_fqcn = get_class($controller[0]);
-            $action = $controller[1];
-        } else {
-            throw new \LogicException('Array supported only');
-        }
+        $controllerMetadata = $this->controllerParser->parse($controller);
 
-        $globalMiddlewares = $this->middlewareServiceLocator->getGlobalMiddlewares();
-        $controllerActionMiddlewares = $this->middlewareServiceLocator->getControllerActionMiddlewares($controller_fqcn, $action);
-        $controllerMiddlewares = $this->middlewareServiceLocator->getControllerMiddlewares($controller_fqcn);
-        $routeMiddlewares = $this->middlewareServiceLocator->getRouteMiddlewares();
-
-        $globalMiddlewares = $this->sortByPriority($globalMiddlewares);
-
-        $globalMiddlewares = array_map(static function (array $middleware) {
-            return $middleware['middleware'];
-        }, $globalMiddlewares);
-
-        $middlewares = $this->middlewareMerger->merge(
-            $globalMiddlewares,
-            $controllerMiddlewares,
-            $controllerActionMiddlewares,
-            $routeMiddlewares[$request->get('_route', '')] ?? []
-        );
-
-        if (empty($middlewares)) {
-            return;
-        }
+        $middlewares = $this->middlewareFacade->getMiddlewaresToHandle($controllerMetadata, $request);
 
         foreach ($middlewares as $middleware) {
             $middlewareResponse = $middleware->handle($request);
@@ -80,16 +55,5 @@ final class RequestSubscriber implements EventSubscriberInterface
                 break;
             }
         }
-    }
-
-    private function sortByPriority(array $globalMiddlewares): array
-    {
-        $result = $globalMiddlewares;
-
-        usort($result, static function (array $a, array $b) {
-            return $b['priority'] <=> $a['priority'];
-        });
-
-        return $result;
     }
 }
