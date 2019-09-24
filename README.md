@@ -81,7 +81,7 @@ For other 3 types (controller, action, route) priority will the same is in the c
 
 First will execute `App\Middleware\AuthNeededMiddleware` and next `App\Middleware\AdminAccessMiddleware`. And same in other 2 types.
 
-## Own middleware example
+## Middleware example
 
 In example below, our middleware check if given credentials is represent user with admin access, if not, we will return response with access denied message.
 
@@ -92,6 +92,8 @@ Returning of null means that next middleware will be executed.
 
 ```php
 <?php
+
+namespace App\Middleware;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
