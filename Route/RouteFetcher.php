@@ -6,7 +6,7 @@ namespace Zholus\SymfonyMiddleware\Route;
 use Symfony\Bundle\FrameworkBundle\Routing\Router;
 use Symfony\Component\HttpFoundation\RequestStack;
 
-final class RouteFetcher
+class RouteFetcher
 {
     private $requestStack;
 
