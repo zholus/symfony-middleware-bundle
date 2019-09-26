@@ -3,18 +3,23 @@ declare(strict_types=1);
 
 namespace Zholus\SymfonyMiddleware\Middleware;
 
+use Zholus\SymfonyMiddleware\GlobalMiddlewareInterface;
 use Zholus\SymfonyMiddleware\MiddlewareInterface;
 
 class MiddlewareMerger
 {
     /**
-     * {@inheritDoc}
+     * @param GlobalMiddlewareInterface[] $global
+     * @param MiddlewareInterface[] $controller
+     * @param MiddlewareInterface[] $action
+     * @param MiddlewareInterface[] $route
+     * @return MiddlewareInterface[]
      */
     public function merge(array $global, array $controller, array $action, array $route): array
     {
-        return $this->unique(
+        return array_values($this->unique(
             array_merge($global, $controller, $action, $route)
-        );
+        ));
     }
 
     /**
