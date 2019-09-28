@@ -63,6 +63,10 @@ final class MiddlewareFacadeTest extends TestCase
 
         $controllerMetadata = new ControllerMetadata('fqcn', 'action_name');
 
+        $this->request->expects($this->once())
+            ->method('get')
+            ->with('_route', '')
+            ->willReturn('route_name');
 
         $globalMiddlewareWrappers = [
             new GlobalMiddlewareWrapper($this->createMock(GlobalMiddlewareInterface::class), 1),
@@ -97,6 +101,7 @@ final class MiddlewareFacadeTest extends TestCase
         ];
         $this->middlewareServiceLocator->expects($this->once())
             ->method('getRouteMiddlewares')
+            ->with('route_name')
             ->willReturn($routeMiddlewares);
 
         $sortedResult = [
@@ -120,12 +125,7 @@ final class MiddlewareFacadeTest extends TestCase
 
         $this->middlewareMerger->expects($this->once())
             ->method('merge')
-            ->with($fromWrapperResult, $controllerMiddlewares, $controllerActionMiddlewares, $routeMiddlewares['route_name']);
-
-        $this->request->expects($this->once())
-            ->method('get')
-            ->with('_route', '')
-            ->willReturn('route_name');
+            ->with($fromWrapperResult, $controllerMiddlewares, $controllerActionMiddlewares, $routeMiddlewares);
 
         $facade->getMiddlewaresToHandle(
             $controllerMetadata,

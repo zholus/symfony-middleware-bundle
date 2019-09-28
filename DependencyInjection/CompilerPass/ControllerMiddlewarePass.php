@@ -23,12 +23,12 @@ final class ControllerMiddlewarePass implements CompilerPassInterface
 
                 if (array_key_exists('action', $attribute)) {
                     $def->addMethodCall(
-                        'addControllerActionMiddlewareReferences',
+                        'addControllerActionMiddleware',
                         [$id, $attribute['action'], new Reference($attribute['middleware'])]
                     );
                 } else {
                     $def->addMethodCall(
-                        'addControllerMiddlewareReferences',
+                        'addControllerMiddleware',
                         [$id, new Reference($attribute['middleware'])]
                     );
                 }

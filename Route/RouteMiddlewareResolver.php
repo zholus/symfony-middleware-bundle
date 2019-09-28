@@ -6,7 +6,7 @@ namespace Zholus\SymfonyMiddleware\Route;
 use Symfony\Bundle\FrameworkBundle\Routing\Router;
 use Zholus\SymfonyMiddleware\Middleware\MiddlewareServiceFetcher;
 
-final class RouteMiddlewareResolver
+class RouteMiddlewareResolver
 {
     private $routeFetcher;
     private $middlewareServiceFetcher;

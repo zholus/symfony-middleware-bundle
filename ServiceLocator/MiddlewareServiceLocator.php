@@ -36,7 +36,7 @@ class MiddlewareServiceLocator
         return $this->globalMiddleware;
     }
 
-    public function addControllerMiddlewareReferences(string $controller_fqcn, MiddlewareInterface $middleware): void
+    public function addControllerMiddleware(string $controller_fqcn, MiddlewareInterface $middleware): void
     {
         $this->controllerMiddleware[$controller_fqcn][] = $middleware;
     }
@@ -49,7 +49,7 @@ class MiddlewareServiceLocator
         return $this->controllerMiddleware[$controller_fqcn] ?? [];
     }
 
-    public function addControllerActionMiddlewareReferences(string $controller_fqcn, string $action, MiddlewareInterface $middleware): void
+    public function addControllerActionMiddleware(string $controller_fqcn, string $action, MiddlewareInterface $middleware): void
     {
         $this->controllerActionMiddleware[$controller_fqcn][$action][] = $middleware;
     }
@@ -67,23 +67,15 @@ class MiddlewareServiceLocator
         $resolved_route_middlewares = $this->routeMiddlewareResolver->resolveMiddlewaresForCurrentRoute($router);
 
         foreach ($resolved_route_middlewares as $resolved_route_middleware) {
-            $this->addRouteMiddleware(
-                $resolved_route_middleware->getRouteName(),
-                $resolved_route_middleware->getMiddleware()
-            );
+            $this->routeMiddleware[$resolved_route_middleware->getRouteName()][] = $resolved_route_middleware->getMiddleware();
         }
-    }
-
-    public function addRouteMiddleware(string $route_name, MiddlewareInterface $middleware): void
-    {
-        $this->routeMiddleware[$route_name][] = $middleware;
     }
 
     /**
      * @return MiddlewareInterface[]
      */
-    public function getRouteMiddlewares(): array
+    public function getRouteMiddlewares(string $route_name): array
     {
-        return $this->routeMiddleware;
+        return $this->routeMiddleware[$route_name] ?? [];
     }
 }
