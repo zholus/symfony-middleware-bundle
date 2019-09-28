@@ -47,11 +47,8 @@ final class RequestSubscriber implements EventSubscriberInterface
 
         foreach ($middlewares as $middleware) {
             $middlewareResponse = $middleware->handle($request);
-
             if ($middlewareResponse !== null) {
-                $event->setController(static function () use ($middlewareResponse) {
-                    return $middlewareResponse;
-                });
+                $event->setController(static function () use ($middlewareResponse) { return $middlewareResponse; });
                 break;
             }
         }
