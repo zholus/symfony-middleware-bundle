@@ -12,16 +12,19 @@ class MiddlewareFacade
 {
     private $middlewareServiceLocator;
     private $middlewareMerger;
-    private $middlewareTransformer;
+    private $globalMiddlewareMapper;
+    private $globalMiddlewareWrapperSorter;
 
     public function __construct(
         MiddlewareServiceLocator $middlewareServiceLocator,
         MiddlewareMerger $middlewareMerger,
-        MiddlewareTransformer $middlewareTransformer
+        GlobalMiddlewareMapper $globalMiddlewareMapper,
+        GlobalMiddlewareWrapperSorter $globalMiddlewareWrapperSorter
     ) {
         $this->middlewareServiceLocator = $middlewareServiceLocator;
         $this->middlewareMerger = $middlewareMerger;
-        $this->middlewareTransformer = $middlewareTransformer;
+        $this->globalMiddlewareMapper = $globalMiddlewareMapper;
+        $this->globalMiddlewareWrapperSorter = $globalMiddlewareWrapperSorter;
     }
 
     /**
@@ -31,7 +34,8 @@ class MiddlewareFacade
     {
         $globalMiddlewares = $this->middlewareServiceLocator->getGlobalMiddlewares();
 
-        $globalMiddlewares = $this->middlewareTransformer->fromWrapper($globalMiddlewares);
+        $globalMiddlewares = $this->globalMiddlewareWrapperSorter->sortDescByPriority($globalMiddlewares);
+        $globalMiddlewares = $this->globalMiddlewareMapper->fromWrapper($globalMiddlewares);
 
         $controllerActionMiddlewares = $this->middlewareServiceLocator->getControllerActionMiddlewares(
             $controllerMetadata->getControllerFqcn(),

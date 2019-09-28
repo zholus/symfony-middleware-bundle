@@ -11,6 +11,6 @@ final class ControllerParser implements ControllerParserInterface
             return new ControllerMetadata(get_class($controller[0]), $controller[1]);
         }
 
-        throw new \LogicException('Array supported only');
+        throw new \InvalidArgumentException('Array supported only');
     }
 }
