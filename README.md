@@ -1,5 +1,7 @@
 # MiddlewareBundle for Symfony
 
+[![Build Status](https://travis-ci.org/zholus/symfony-middleware-bundle.svg?branch=master)
+
 This bundle allow you to create simple middleware that executes right before controller does on each requests.
 
 Its almost looks like middleware in laravel framework.
