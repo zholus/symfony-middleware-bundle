@@ -4,3 +4,4 @@ composer.lock
 thoughts.md
 cov/
 .phpunit.result.cache
+build/
