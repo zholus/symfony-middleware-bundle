@@ -16,6 +16,10 @@ final class ControllerMiddlewarePass implements CompilerPassInterface
         $def = $container->getDefinition(MiddlewareServiceLocator::class);
 
         foreach ($container->findTaggedServiceIds(MiddlewareEnum::CONTROLLER_TAG) as $id => $attributes) {
+            if (empty($attributes)) {
+                throw new \InvalidArgumentException('Provide at least "middleware" attribute');
+            }
+
             foreach ($attributes as $attribute) {
                 if (!array_key_exists('middleware', $attribute)) {
                     throw new \InvalidArgumentException('No "middleware" attribute was found');
