@@ -1,6 +1,6 @@
 # MiddlewareBundle for Symfony
 
-![Build Status](https://travis-ci.org/zholus/symfony-middleware-bundle.svg?branch=master)
+[![Build Status](https://travis-ci.org/zholus/symfony-middleware-bundle.svg?branch=master)](https://travis-ci.org/zholus/symfony-middleware-bundle)
 [![Coverage Status](https://coveralls.io/repos/github/zholus/symfony-middleware-bundle/badge.svg?branch=php-coveralls)](https://coveralls.io/github/zholus/symfony-middleware-bundle?branch=php-coveralls)
 
 This bundle allow you to create simple middleware that executes right before controller does on each requests.
