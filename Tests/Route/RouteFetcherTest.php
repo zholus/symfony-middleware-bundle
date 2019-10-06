@@ -55,4 +55,3 @@ final class RouteFetcherTest extends TestCase
         $this->assertSame($routeName, $routeWrapper->getRouteName());
     }
 }
-

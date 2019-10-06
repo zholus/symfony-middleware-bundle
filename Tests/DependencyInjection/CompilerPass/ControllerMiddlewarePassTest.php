@@ -71,7 +71,7 @@ final class ControllerMiddlewarePassTest extends TestCase
 
     public function testProcess(): void
     {
-         $services = [
+        $services = [
             'id_1' => [['middleware' => 'fqcn_1']],
             'id_2' => [['middleware' => 'fqcn_2', 'action' => 'action_name']],
             'id_3' => [['middleware' => 'fqcn_3']],
