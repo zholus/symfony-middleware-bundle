@@ -13,7 +13,8 @@ final class ControllerParserTest extends TestCase
         $this->expectException(\InvalidArgumentException::class);
         $parser = new ControllerParser();
 
-        $parser->parse(static function () {});
+        $parser->parse(static function () {
+        });
     }
 
     public function testParse(): void
