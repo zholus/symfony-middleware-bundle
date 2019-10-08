@@ -10,6 +10,16 @@ Its almost looks like middleware in laravel framework.
 
 There are 4 possible ways to inject your middleware to your request.
 
+## Installation
+
+Composer
+
+`composer require zholus/symfony-middleware`
+
+Add bundle in `bundles.php`
+
+`Zholus\SymfonyMiddleware\MiddlewareBundle::class => ['dev' => true]`
+
 ## Register middleware
 
 ### Global middleware
