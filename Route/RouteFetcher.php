@@ -19,6 +19,11 @@ class RouteFetcher
     public function fetchCurrentRoute(Router $router): RouteWrapper
     {
         $request = $this->requestStack->getCurrentRequest();
+
+        if (null === $request) {
+            return new RouteWrapper(null, null);
+        }
+
         $routeCollection = $router->getRouteCollection();
 
         $routeName = $request->get('_route');
