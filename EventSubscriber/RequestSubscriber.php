@@ -5,6 +5,7 @@ namespace Zholus\SymfonyMiddleware\EventSubscriber;
 
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\Event\ControllerEvent;
+use Symfony\Component\HttpKernel\Event\KernelEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
 use Zholus\SymfonyMiddleware\Controller\ControllerParserInterface;
 use Zholus\SymfonyMiddleware\Middleware\MiddlewareFacade;

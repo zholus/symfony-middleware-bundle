@@ -8,6 +8,7 @@ use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Event\ControllerEvent;
+use Symfony\Component\HttpKernel\HttpKernelInterface;
 use Zholus\SymfonyMiddleware\Controller\ControllerMetadata;
 use Zholus\SymfonyMiddleware\Controller\ControllerParserInterface;
 use Zholus\SymfonyMiddleware\EventSubscriber\RequestSubscriber;
@@ -45,11 +46,7 @@ final class RequestSubscriberTest extends TestCase
 
     public function testOnControllerExecuteOnNotMasterRequest(): void
     {
-        $event = $this->createMock(ControllerEvent::class);
-        $event
-            ->expects($this->once())
-            ->method('isMasterRequest')
-            ->willReturn(false);
+        $event = $this->createControllerEvent(false);
 
         $this->controllerParser->expects($this->never())
             ->method('parse');
@@ -62,27 +59,13 @@ final class RequestSubscriberTest extends TestCase
 
     public function testOnControllerExecuteWithMiddlewaresWithNoResponse(): void
     {
-        $event = $this->createMock(ControllerEvent::class);
-        $event->expects($this->never())
-            ->method('setController');
-
-        $event
-            ->expects($this->once())
-            ->method('isMasterRequest')
-            ->willReturn(true);
-
         $request = $this->createMock(Request::class);
-        $event->expects($this->once())
-            ->method('getRequest')
-            ->willReturn($request);
-
         $callable = [
             $this,
             __FUNCTION__
         ];
-        $event->expects($this->once())
-            ->method('getController')
-            ->willReturn($callable);
+
+        $event = $this->createControllerEvent(true, $request, $callable);
 
         $controllerMetadata = new ControllerMetadata('fqcn', 'action_name');
         $this->controllerParser->expects($this->once())
@@ -110,28 +93,13 @@ final class RequestSubscriberTest extends TestCase
 
     public function testOnControllerExecuteWithMiddlewaresWithResponse(): void
     {
-        $event = $this->createMock(ControllerEvent::class);
-
-        $event->expects($this->once())
-            ->method('setController');
-
-        $event
-            ->expects($this->once())
-            ->method('isMasterRequest')
-            ->willReturn(true);
-
         $request = $this->createMock(Request::class);
-        $event->expects($this->once())
-            ->method('getRequest')
-            ->willReturn($request);
-
         $callable = [
             $this,
             __FUNCTION__
         ];
-        $event->expects($this->once())
-            ->method('getController')
-            ->willReturn($callable);
+
+        $event = $this->createControllerEvent(true, $request, $callable);
 
         $controllerMetadata = new ControllerMetadata('fqcn', 'action_name');
         $this->controllerParser->expects($this->once())
@@ -160,5 +128,21 @@ final class RequestSubscriberTest extends TestCase
             ->willReturn([$mock_1, $mock_2, $mock_3]);
 
         $this->requestSubscriber->onControllerExecute($event);
+    }
+
+    private function createControllerEvent(
+        bool $isMasterRequest,
+        Request $request = null,
+        callable $callable = null
+    ): ControllerEvent {
+        $httpKernel = $this->createMock(HttpKernelInterface::class);
+        $request = $request ?? $this->createMock(Request::class);
+
+        return new ControllerEvent(
+            $httpKernel,
+            $callable ?? static function () {},
+            $request,
+            $isMasterRequest ? HttpKernelInterface::MASTER_REQUEST : HttpKernelInterface::SUB_REQUEST
+        );
     }
 }
