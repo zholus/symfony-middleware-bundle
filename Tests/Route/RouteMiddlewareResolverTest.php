@@ -4,8 +4,8 @@ declare(strict_types=1);
 namespace Zholus\SymfonyMiddleware\Tests\Route;
 
 use PHPUnit\Framework\MockObject\MockObject;
+use PHPUnit\Framework\TestCase;
 use Symfony\Bundle\FrameworkBundle\Routing\Router;
-use Symfony\Bundle\FrameworkBundle\Tests\TestCase;
 use Symfony\Component\Routing\Route;
 use Zholus\SymfonyMiddleware\Middleware\MiddlewareServiceFetcher;
 use Zholus\SymfonyMiddleware\MiddlewareInterface;
