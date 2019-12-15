@@ -54,4 +54,25 @@ final class RouteFetcherTest extends TestCase
         $this->assertSame($route, $routeWrapper->getOriginalRoute());
         $this->assertSame($routeName, $routeWrapper->getRouteName());
     }
+
+    public function testWithNoRequests(): void
+    {
+        /** @var RequestStack|MockObject $requestStack */
+        $requestStack = $this->createMock(RequestStack::class);
+        $requestStack->expects($this->once())
+            ->method('getCurrentRequest')
+            ->willReturn(null);
+
+        /** @var Router|MockObject $router */
+        $router = $this->createMock(Router::class);
+        $router->expects($this->never())
+            ->method('getRouteCollection');
+
+        $fetcher = new RouteFetcher($requestStack);
+
+        $routeWrapper = $fetcher->fetchCurrentRoute($router);
+
+        $this->assertNull($routeWrapper->getRouteName());
+        $this->assertNull($routeWrapper->getOriginalRoute());
+    }
 }
