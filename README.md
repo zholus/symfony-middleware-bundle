@@ -10,11 +10,20 @@ Its almost looks like middleware in laravel framework.
 
 There are 4 possible ways to inject your middleware to your request.
 
+## Symfony versions
+
+- Symfony version `5.x` - use branch `master`
+- Smyfony version `4.x` - use branch `4.x`
+
 ## Installation
 
-Composer
+Composer for symfony version 5.x
 
 `composer require zholus/symfony-middleware`
+
+Composer for symfony version 4.x
+
+`composer require zholus/symfony-middleware:^1`
 
 Add bundle in `bundles.php`
 
