@@ -140,7 +140,8 @@ final class RequestSubscriberTest extends TestCase
 
         return new ControllerEvent(
             $httpKernel,
-            $callable ?? static function () {},
+            $callable ?? static function () {
+            },
             $request,
             $isMasterRequest ? HttpKernelInterface::MASTER_REQUEST : HttpKernelInterface::SUB_REQUEST
         );
