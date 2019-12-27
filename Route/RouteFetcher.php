@@ -24,9 +24,14 @@ class RouteFetcher
             return new RouteWrapper(null, null);
         }
 
+        $routeName = $request->get('_route');
+
+        if (!is_string($routeName)) {
+            return new RouteWrapper(null, null);
+        }
+
         $routeCollection = $router->getRouteCollection();
 
-        $routeName = $request->get('_route');
         $route = $routeCollection->get($routeName);
 
         return new RouteWrapper($route, $routeName);
