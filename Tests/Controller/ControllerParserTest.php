@@ -8,16 +8,7 @@ use Zholus\SymfonyMiddleware\Controller\ControllerParser;
 
 final class ControllerParserTest extends TestCase
 {
-    public function testParseException(): void
-    {
-        $this->expectException(\InvalidArgumentException::class);
-        $parser = new ControllerParser();
-
-        $parser->parse(static function () {
-        });
-    }
-
-    public function testParse(): void
+    public function testParseArrayType(): void
     {
         $parser = new ControllerParser();
 
@@ -31,5 +22,21 @@ final class ControllerParserTest extends TestCase
 
         $this->assertSame(get_class($this), $controllerMetadata->getControllerFqcn());
         $this->assertSame($action_method_name, $controllerMetadata->getControllerAction());
+    }
+
+    public function testParseInvokableController(): void
+    {
+        $parser = new ControllerParser();
+
+        $callable = new class {
+            public function __invoke()
+            {
+            }
+        };
+
+        $controllerMetadata = $parser->parse($callable);
+
+        $this->assertSame(get_class($callable), $controllerMetadata->getControllerFqcn());
+        $this->assertSame('__invoke', $controllerMetadata->getControllerAction());
     }
 }
