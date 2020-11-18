@@ -27,7 +27,7 @@ Composer for symfony version 4.x
 
 Add bundle in `bundles.php`
 
-`Zholus\SymfonyMiddleware\MiddlewareBundle::class => ['dev' => true]`
+`Zholus\SymfonyMiddleware\MiddlewareBundle::class => ['all' => true]`
 
 ## Register middleware
 
