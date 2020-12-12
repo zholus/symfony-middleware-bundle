@@ -6,6 +6,9 @@ php:
   - '7.4'
   - '8.0'
 
+git:
+  depth: 2
+
 cache:
   directories:
     - $HOME/.composer/cache
