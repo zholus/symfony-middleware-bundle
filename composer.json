@@ -2,7 +2,7 @@
   "name": "zholus/symfony-middleware",
   "license": "MIT",
   "require": {
-    "php": "^7.2.5 || ^8.0",
+    "php": ">=8.0.2",
     "symfony/framework-bundle": "^6.0",
     "symfony/event-dispatcher": "^6.0"
   },
