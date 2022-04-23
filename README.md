@@ -12,8 +12,9 @@ There are 4 possible ways to inject your middleware to your request.
 
 ## Symfony versions
 
-- Symfony version `5.x` - use branch `master`
-- Smyfony version `4.x` - use branch `4.x`
+- Symfony version `6.x` - use branch `master`
+- Symfony version `5.x` - use branch `5.x`
+- Symfony version `4.x` - use branch `4.x`
 
 ## Installation
 
