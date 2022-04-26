@@ -4,7 +4,7 @@
 [![Coverage Status](https://coveralls.io/repos/github/zholus/symfony-middleware-bundle/badge.svg?branch=php-coveralls)](https://coveralls.io/github/zholus/symfony-middleware-bundle?branch=php-coveralls)
 [![StyleCI](https://github.styleci.io/repos/205661638/shield?branch=master)](https://github.styleci.io/repos/205661638)
 
-This bundle allow you to create simple middleware that executes right before controller does on each requests.
+This bundle allows you to create simple middleware that executes right before controller does on each requests.
 
 Its almost looks like middleware in laravel framework.
 
