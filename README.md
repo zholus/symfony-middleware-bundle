@@ -18,9 +18,13 @@ There are 4 possible ways to inject your middleware to your request.
 
 ## Installation
 
-Composer for symfony version 5.x
+Composer for symfony version 6.x
 
 `composer require zholus/symfony-middleware`
+
+Composer for symfony version 5.x
+
+`composer require zholus/symfony-middleware:^2`
 
 Composer for symfony version 4.x
 
