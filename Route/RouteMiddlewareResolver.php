@@ -8,15 +8,10 @@ use Zholus\SymfonyMiddleware\Middleware\MiddlewareServiceFetcher;
 
 class RouteMiddlewareResolver
 {
-    private $routeFetcher;
-    private $middlewareServiceFetcher;
-
     public function __construct(
-        RouteFetcher $routeFetcher,
-        MiddlewareServiceFetcher $middlewareServiceFetcher
+        private RouteFetcher $routeFetcher,
+        private MiddlewareServiceFetcher $middlewareServiceFetcher
     ) {
-        $this->routeFetcher = $routeFetcher;
-        $this->middlewareServiceFetcher = $middlewareServiceFetcher;
     }
 
     /**

@@ -8,12 +8,9 @@ use Symfony\Component\HttpFoundation\RequestStack;
 
 class RouteFetcher
 {
-    private $requestStack;
-
     public function __construct(
-        RequestStack $requestStack
+        private RequestStack $requestStack
     ) {
-        $this->requestStack = $requestStack;
     }
 
     public function fetchCurrentRoute(Router $router): RouteWrapper

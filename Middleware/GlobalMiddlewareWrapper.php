@@ -7,13 +7,10 @@ use Zholus\SymfonyMiddleware\GlobalMiddlewareInterface;
 
 final class GlobalMiddlewareWrapper
 {
-    private $middleware;
-    private $priority;
-
-    public function __construct(GlobalMiddlewareInterface $middleware, int $priority)
-    {
-        $this->middleware = $middleware;
-        $this->priority = $priority;
+    public function __construct(
+        private GlobalMiddlewareInterface $middleware,
+        private int $priority
+    ) {
     }
 
     public function getMiddleware(): GlobalMiddlewareInterface
