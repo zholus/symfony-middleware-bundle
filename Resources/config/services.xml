@@ -7,6 +7,8 @@
     <services>
         <defaults autowire="true" autoconfigure="true" public="false"/>
 
+        <service id="Symfony\Component\DependencyInjection\ContainerInterface" alias="service_container"/>
+
         <service id="Zholus\SymfonyMiddleware\EventSubscriber\RequestSubscriber">
             <tag name="kernel.event_subscriber" />
         </service>
