@@ -5,5 +5,5 @@ namespace Zholus\SymfonyMiddleware\Controller;
 
 interface ControllerParserInterface
 {
-    public function parse(callable $controller): ControllerMetadata;
+    public function parse(callable|object|array $controller): ControllerMetadata;
 }

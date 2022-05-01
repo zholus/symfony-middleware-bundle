@@ -143,7 +143,7 @@ final class RequestSubscriberTest extends TestCase
             $callable ?? static function () {
             },
             $request,
-            $isMasterRequest ? HttpKernelInterface::MASTER_REQUEST : HttpKernelInterface::SUB_REQUEST
+            $isMasterRequest ? HttpKernelInterface::MAIN_REQUEST : HttpKernelInterface::SUB_REQUEST
         );
     }
 }

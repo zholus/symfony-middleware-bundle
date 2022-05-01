@@ -5,7 +5,7 @@ namespace Zholus\SymfonyMiddleware\Controller;
 
 final class ControllerParser implements ControllerParserInterface
 {
-    public function parse(callable $controller): ControllerMetadata
+    public function parse(callable|object|array $controller): ControllerMetadata
     {
         if (is_array($controller)) {
             return new ControllerMetadata(get_class($controller[0]), $controller[1]);

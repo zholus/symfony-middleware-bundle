@@ -2,13 +2,13 @@
   "name": "zholus/symfony-middleware",
   "license": "MIT",
   "require": {
-    "php": "^7.2.5 || ^8.0",
-    "symfony/framework-bundle": "^5.0",
-    "symfony/event-dispatcher": "^5.0"
+    "php": ">=8.0.2",
+    "symfony/framework-bundle": "^6.0",
+    "symfony/event-dispatcher": "^6.0"
   },
   "require-dev": {
-    "phpunit/phpunit": "^8.5.0",
-    "symfony/var-dumper": "^5.0",
+    "phpunit/phpunit": "^9.5",
+    "symfony/var-dumper": "^6.0",
     "php-coveralls/php-coveralls": "^2.1"
   },
   "autoload": {

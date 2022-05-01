@@ -7,13 +7,10 @@ use Zholus\SymfonyMiddleware\MiddlewareInterface;
 
 final class ResolvedRouteMiddleware
 {
-    private $routeName;
-    private $middleware;
-
-    public function __construct(string $routeName, MiddlewareInterface $middleware)
-    {
-        $this->routeName = $routeName;
-        $this->middleware = $middleware;
+    public function __construct(
+        private string $routeName,
+        private MiddlewareInterface $middleware
+    ) {
     }
 
     public function getRouteName(): string

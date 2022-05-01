@@ -8,12 +8,9 @@ use Zholus\SymfonyMiddleware\MiddlewareInterface;
 
 class MiddlewareServiceFetcher
 {
-    private $container;
-
     public function __construct(
-        ContainerInterface $container
+        private ContainerInterface $container
     ) {
-        $this->container = $container;
     }
 
     /**

@@ -5,13 +5,10 @@ namespace Zholus\SymfonyMiddleware\Controller;
 
 final class ControllerMetadata
 {
-    private $controllerFqcn;
-    private $controllerAction;
-
-    public function __construct(string $controllerFqcn, string $controllerAction)
-    {
-        $this->controllerFqcn = $controllerFqcn;
-        $this->controllerAction = $controllerAction;
+    public function __construct(
+        private string $controllerFqcn,
+        private string $controllerAction
+    ) {
     }
 
     public function getControllerFqcn(): string

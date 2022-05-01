@@ -11,16 +11,14 @@ use Zholus\SymfonyMiddleware\Route\RouteMiddlewareResolver;
 
 class MiddlewareServiceLocator
 {
-    private $globalMiddleware = [];
-    private $controllerMiddleware = [];
-    private $controllerActionMiddleware = [];
-    private $routeMiddleware = [];
-    private $routeMiddlewareResolver;
+    private array $globalMiddleware = [];
+    private array $controllerMiddleware = [];
+    private array $controllerActionMiddleware = [];
+    private array $routeMiddleware = [];
 
     public function __construct(
-        RouteMiddlewareResolver $routeMiddlewareResolver
+        private RouteMiddlewareResolver $routeMiddlewareResolver
     ) {
-        $this->routeMiddlewareResolver = $routeMiddlewareResolver;
     }
 
     public function addGlobalMiddleware(GlobalMiddlewareInterface $middleware, int $priority = 0): void

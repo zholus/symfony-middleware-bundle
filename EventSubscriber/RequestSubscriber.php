@@ -11,8 +11,8 @@ use Zholus\SymfonyMiddleware\Middleware\MiddlewareFacade;
 
 final class RequestSubscriber implements EventSubscriberInterface
 {
-    private $controllerParser;
-    private $middlewareFacade;
+    private ControllerParserInterface $controllerParser;
+    private MiddlewareFacade $middlewareFacade;
 
     public function __construct(
         ControllerParserInterface $controllerParser,
@@ -33,7 +33,7 @@ final class RequestSubscriber implements EventSubscriberInterface
 
     public function onControllerExecute(ControllerEvent $event): void
     {
-        if (!$event->isMasterRequest()) {
+        if (!$event->isMainRequest()) {
             return;
         }
 
