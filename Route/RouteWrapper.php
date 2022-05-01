@@ -7,13 +7,10 @@ use Symfony\Component\Routing\Route;
 
 final class RouteWrapper
 {
-    private $originalRoute;
-    private $routeName;
-
-    public function __construct(?Route $originalRoute, ?string $routeName)
-    {
-        $this->originalRoute = $originalRoute;
-        $this->routeName = $routeName;
+    public function __construct(
+        private ?Route $originalRoute,
+        private ?string $routeName
+    ) {
     }
 
     public function getOriginalRoute(): ?Route

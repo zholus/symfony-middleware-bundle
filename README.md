@@ -4,7 +4,7 @@
 [![Coverage Status](https://coveralls.io/repos/github/zholus/symfony-middleware-bundle/badge.svg?branch=php-coveralls)](https://coveralls.io/github/zholus/symfony-middleware-bundle?branch=php-coveralls)
 [![StyleCI](https://github.styleci.io/repos/205661638/shield?branch=master)](https://github.styleci.io/repos/205661638)
 
-This bundle allow you to create simple middleware that executes right before controller does on each requests.
+This bundle allows you to create simple middleware that executes right before controller does on each requests.
 
 Its almost looks like middleware in laravel framework.
 
@@ -12,14 +12,19 @@ There are 4 possible ways to inject your middleware to your request.
 
 ## Symfony versions
 
-- Symfony version `5.x` - use branch `master`
-- Smyfony version `4.x` - use branch `4.x`
+- Symfony version `6.x` - use branch `master`
+- Symfony version `5.x` - use branch `5.x`
+- Symfony version `4.x` - use branch `4.x`
 
 ## Installation
 
-Composer for symfony version 5.x
+Composer for symfony version 6.x
 
 `composer require zholus/symfony-middleware`
+
+Composer for symfony version 5.x
+
+`composer require zholus/symfony-middleware:^2`
 
 Composer for symfony version 4.x
 

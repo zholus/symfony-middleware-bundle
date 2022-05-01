@@ -10,21 +10,12 @@ use Zholus\SymfonyMiddleware\ServiceLocator\MiddlewareServiceLocator;
 
 class MiddlewareFacade
 {
-    private $middlewareServiceLocator;
-    private $middlewareMerger;
-    private $globalMiddlewareMapper;
-    private $globalMiddlewareWrapperSorter;
-
     public function __construct(
-        MiddlewareServiceLocator $middlewareServiceLocator,
-        MiddlewareMerger $middlewareMerger,
-        GlobalMiddlewareMapper $globalMiddlewareMapper,
-        GlobalMiddlewareWrapperSorter $globalMiddlewareWrapperSorter
+        private MiddlewareServiceLocator $middlewareServiceLocator,
+        private MiddlewareMerger $middlewareMerger,
+        private GlobalMiddlewareMapper $globalMiddlewareMapper,
+        private GlobalMiddlewareWrapperSorter $globalMiddlewareWrapperSorter
     ) {
-        $this->middlewareServiceLocator = $middlewareServiceLocator;
-        $this->middlewareMerger = $middlewareMerger;
-        $this->globalMiddlewareMapper = $globalMiddlewareMapper;
-        $this->globalMiddlewareWrapperSorter = $globalMiddlewareWrapperSorter;
     }
 
     /**
